@@ -19,7 +19,7 @@
     if (request.getParameter("acao") != null) {
 
         if (request.getParameter("acao").equals("editar")) {
-            
+
             idusuario = request.getParameter("idusuario");
             acao = request.getParameter("acao");
 
@@ -122,7 +122,7 @@
                     <div class="col-sm-10">
                         <div id="divfisica" class="form-check">
                             <input class="form-check-input" 
-                                   <%= tprequerente.equals("PF") ? "checked" : "" %>
+                                   <%= tprequerente.equals("PF") ? "checked" : ""%>
                                    type="radio" name="requerente"  id="gridRadios1" value="PF">
                             <label class="form-check-label" for="gridRadios1">
                                 Pessoa Física
@@ -130,7 +130,7 @@
                         </div>
                         <div id="divjuridica" class="form-check">
                             <input class="form-check-input" 
-                                   <%= tprequerente.equals("PJ") ? "checked" : "" %>
+                                   <%= tprequerente.equals("PJ") ? "checked" : ""%>
                                    type="radio" name="requerente" id="gridRadios2" value="PJ" >
                             <label class="form-check-label" for="gridRadios2">
                                 Pessoa Jurídica
@@ -145,7 +145,7 @@
                     <label id="lblNomeRazao" for="lblNome" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-10">
                         <input type="text" name="nomerazao" class="form-control" id="inputNome" 
-                               value="<%= nome %>">
+                               value="<%= nome%>">
                     </div>
                 </div>
 
@@ -153,7 +153,7 @@
                     <label id="lblCpfCnpj" for="txtCpfCnpj" class="col-sm-2 col-form-label">CPF</label>
                     <div class="col-sm-10">
                         <input type="text" name="documento" class="form-control" id="txtCpfCnpj" 
-                               value="<%= documento %>">
+                               value="<%= documento%>">
                     </div>
                 </div>
 
@@ -161,14 +161,14 @@
                     <label for="inputLogradouro" class="col-sm-2 col-form-label">Logradouro</label>
                     <div class="col-sm-6">
                         <input type="text" 
-                               value="<%= logradouro %>"
+                               value="<%= logradouro%>"
                                name="logradouro" 
                                class="form-control" id="inputLogradouro">
                     </div>
                     <label for="inputNumero" class="col-sm-2 col-form-label">Número</label>
                     <div class="col-sm-2">
                         <input type="text"  
-                               value="<%= numero %>"
+                               value="<%= numero%>"
                                name="numero" 
                                class="form-control" id="inputNumero">
                     </div>
@@ -178,7 +178,7 @@
                     <label for="txtDddTelefone" class="col-sm-2 col-form-label">Telefone</label>
                     <div class="col-sm-5">
                         <input type="text"  
-                               value="<%= dddtelefone %>"
+                               value="<%= dddtelefone%>"
                                name="telefone" class="form-control" id="txtDddTelefone">
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-5">
                         <input type="email"  
-                               value="<%= email %>"
+                               value="<%= email%>"
                                name="email"  class="form-control" id="inputEmail" size="20">
                     </div>
 
@@ -196,17 +196,17 @@
                     <label for="inputCidade" class="col-sm-2 col-form-label">Cidade</label>
                     <div class="col-sm-3">
                         <input type="text" 
-                               value="<%= cidade %>"
+                               value="<%= cidade%>"
                                name="cidade" class="form-control" id="inputCidade">
                     </div>
                 </div>
 
 
                 <div class="form-group row">
-                  
+
                     <label for="inputBairro" class="col-sm-2 col-form-label">Bairro</label>
                     <div class="col-sm-3">
-                        <input type="text"  name="bairro" class="form-control" id="inputBairro">
+                        <input type="text"  name="bairro" class="form-control" id="inputBairro" value="<%=bairro%>">
                     </div>
                 </div>
 
@@ -215,29 +215,31 @@
 
                     <label for="sltUf" class="col-sm-2 col-form-label">UF:</label>
                     <div class="col-sm-3">
-                        <select class="form-control" id="sltUf" name="uf">
-                            <option value="ES">Espirito Santo </option>
-                            <option value="MG">Minas Gerais </option>
-                            <option value="SP">São Paulo </option>
-                            <option value="RJ"> Rio de janeiro</option>
-
+                        <select class="form-control" id="sltUf" name="uf" value="<%=uf%>">
+                            <option <%= uf.equals("ES") ? "selected" : ""%> 
+                                value="ES">Espirito Santo </option>
+                            <option <%= uf.equals("MG") ? "selected" : ""%>
+                                value="MG">Minas Gerais </option>
+                            <option <%= uf.equals("SP") ? "selected" : ""%>
+                                value="SP">São Paulo </option>
+                            <option <%= uf.equals("RJ") ? "selected" : ""%>
+                                value="RJ"> Rio de janeiro</option>
                         </select>
-
                     </div>
                     <label for="inputImgempresa" class="col-sm-2 col-form-label">Imagem da empresa </label>
 
                     <div class="col-sm-5">
-                        <input type="file"  name="imagemempresa" class="form-control" id="inputImgempresa" />
+                        <input type="file"  name="imagemempresa" class="form-control" id="inputImgempresa" value="<%=img%>"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputsenha" class="col-sm-2 col-form-label">Senha</label>
                     <div class="col-sm-4">
-                        <input type="password"  name="senha"  class="form-control" id="inputsenha" size="10">
+                        <input type="password"  name="senha"  class="form-control" id="inputsenha" size="10" value="<%=senha%>">
                     </div>
                     <label for="#inputconfSenha" class="col-sm-2 col-form-label">Confirme Senha</label>
                     <div class="col-sm-4">
-                        <input type="password"  name="confsenha" class="form-control" id="inputconfSenha">
+                        <input type="password"  name="confsenha" class="form-control" id="inputconfSenha" value="<%=senha%>">
                     </div>
                 </div>
                 <table cellpadding="20px" cellspacing="4">
@@ -249,7 +251,7 @@
                     <img src="../img/mapa3.jfif" style="width: 100%"/>
                 </table>
                 <br><br>
-                <button type="submit" class="botaocad">Cadastrar ponto de coleta</button>
+                <button type="submit" class="botaocad" value="cadastrar">Cadastrar ponto de coleta</button>
             </form 
         </div>
     </div>
