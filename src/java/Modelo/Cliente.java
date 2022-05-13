@@ -247,6 +247,14 @@ public class Cliente {
         this.dataCadastro = dataCadastro;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
     private int id;
     private int idusuario;
     private String nome;
@@ -255,6 +263,7 @@ public class Cliente {
     private String email;
     private String ddd;
     private String telefone;
+    private String cep;
     private String logradouro;
     private String numero;
     private String complemento;
@@ -270,9 +279,9 @@ public class Cliente {
             Connection conn = BancodeDados.getConexao();
             String sql = "INSERT INTO `bdecoleta`.`tb_ponto` "
                     + "(idusuario, tprequerente, nome, documento, ddd, "
-                    + "telefone, email, logradouro, numero, complemento, "
+                    + "telefone, email, logradouro, numero, cep, complemento, "
                     + "bairro, cidade, uf, imagem)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement ps = conn.prepareStatement(sql,
                     Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, this.getIdusuario());
@@ -284,11 +293,12 @@ public class Cliente {
             ps.setString(7, this.getEmail());
             ps.setString(8, this.getLogradouro());
             ps.setString(9, this.getNumero());
-            ps.setString(10, this.getComplemento());
-            ps.setString(11, this.getBairro());
-            ps.setString(12, this.getCidade());
-            ps.setString(13, this.getUf());
-            ps.setString(14, this.getImagem());
+            ps.setString(10, this.getCep());
+            ps.setString(11, this.getComplemento());
+            ps.setString(12, this.getBairro());
+            ps.setString(13, this.getCidade());
+            ps.setString(14, this.getUf());
+            ps.setString(15, this.getImagem());
 
             int linhasafetadas = ps.executeUpdate();
             if (linhasafetadas > 0) {
@@ -333,6 +343,7 @@ public class Cliente {
                 c.setCidade(rs.getString("cidade"));
                 c.setComplemento(rs.getString("complemento"));
                 c.setNumero(rs.getString("numero"));
+                c.setCep(rs.getString("cep"));
                 c.setLogradouro(rs.getString("logradouro"));
                 c.setImagem(rs.getString("imagem"));
                 c.setDataCadastro(rs.getTimestamp("dtcadastro"));
@@ -367,6 +378,7 @@ public class Cliente {
                 this.setCidade(rs.getString("cidade"));
                 this.setComplemento(rs.getString("complemento"));
                 this.setNumero(rs.getString("numero"));
+                this.setCep(rs.getString("cep"));
                 this.setLogradouro(rs.getString("logradouro"));
                 this.setImagem(rs.getString("imagem"));
                 this.setDataCadastro(rs.getTimestamp("dtcadastro"));
@@ -376,6 +388,73 @@ public class Cliente {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean Excluir(long id) {
+        try {
+            Connection conn = BancodeDados.getConexao();
+            String sql = "DELETE FROM tb_ponto  WHERE id = ?; ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setLong(1, id);
+            int linhasafetadas = ps.executeUpdate();
+            if (linhasafetadas > 0) {
+                System.out.println("Apagou!!");
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean Atualizar() {
+        try {
+            Connection conn = BancodeDados.getConexao();
+            String sql = "UPDATE tb_ponto ";
+            sql += " SET tprequerente = ?, ";
+            sql += " nome = ?, ";
+            sql += " documento = ?, ";
+            sql += " ddd = ?, ";
+            sql += " telefone = ?, ";
+            sql += " email = ?, ";
+            sql += " logradouro = ?, ";
+            sql += " numero = ?, ";
+            sql += " cep = ?, ";
+            sql += " complemento = ?, ";
+            sql += " bairro = ?, ";
+            sql += " cidade = ?, ";
+            sql += " uf = ?, ";
+            sql += " imagem = ? ";
+            sql += " WHERE id = ?; ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getNome());
+            ps.setString(1, this.getDocumento());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            ps.setString(1, this.getTpRequerente());
+            
+            ps.setLong(9, this.getId());
+            int linhasafetadas = ps.executeUpdate();
+            if (linhasafetadas > 0) {
+                System.out.println("atualizou!");
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
             return false;
         }
     }

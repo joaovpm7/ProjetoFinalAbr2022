@@ -38,22 +38,21 @@ public class ClienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getParameter("acao") != null) {
-            
-            if (request.getParameter("acao").equals("cadastrar")) {
+
+            if (request.getParameter("acao").equals("cadastrar")) {                
                 Cliente cli = new Cliente();
-
                 cli.setNome(request.getParameter("nomerazao"));
-
                 cli.setTpRequerente(request.getParameter("requerente"));
                 cli.setEmail(request.getParameter("email"));
                 cli.setDdd(request.getParameter("ddd"));
                 cli.setLogradouro(request.getParameter("logradouro"));
                 cli.setNumero(request.getParameter("numero"));
+                cli.setCep(request.getParameter("cep"));
                 cli.setComplemento(request.getParameter("complemento"));
                 cli.setBairro(request.getParameter("bairro"));
                 cli.setCidade(request.getParameter("cidade"));
                 cli.setUf(request.getParameter("uf"));
-                cli.setImagem(request.getParameter("imagemempresa"));
+                cli.setImagem(request.getParameter("imagem"));
 
                 String strtelefone = request.getParameter("telefone");
                 strtelefone = strtelefone.replace("(", "");
@@ -69,15 +68,18 @@ public class ClienteServlet extends HttpServlet {
                 cli.setIdusuario(Integer.parseInt(stridusuario));
 
                 boolean cadastrou = cli.Cadastrar();
-                if (cadastrou) {
+                if (cadastrou == true) {
                     response.sendRedirect("listar.jsp");
                 } else {
-                    request.setAttribute("bananauser", stridusuario);
-                    request.getRequestDispatcher("cadastrar.jsp")
-                            .forward(request, response);
+                     response.sendRedirect("index.jsp?erro=cadastrarPonto");
                 }
+            } else if (request.getParameter("acao").equals("apagar")){
+                int client = Integer.parseInt(request.getParameter("ipessoa"));
+                Cliente.Excluir(client);
+                String mensagem
+                        = "<h1>Produto Apagado com Sucesso</h1>";
+                response.getWriter().print(mensagem);
             }
-
         }
     }
 

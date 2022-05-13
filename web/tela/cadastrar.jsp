@@ -14,7 +14,7 @@
             numero = "", complemento = "",
             dddtelefone = "", email = "",
             cidade = "", logradouro = "", bairro = "",
-            uf = "", img = "", senha = "", documento = "", login = "";
+            uf = "", img = "", senha = "", documento = "", login = "", cep = "";
 
     if (request.getParameter("acao") != null) {
 
@@ -158,19 +158,31 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="txtcep" class="col-sm-2 col-form-label">CEP</label>
+                    <div class="col-sm-10">
+                        <input id="txtcep"
+                               name="cep"
+                               placeholder="Informe o seu CEP aqui.."
+                               type="text"
+                               class="form-control"
+                               value="<%= cep%>">
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="inputLogradouro" class="col-sm-2 col-form-label">Logradouro</label>
                     <div class="col-sm-6">
                         <input type="text" 
                                value="<%= logradouro%>"
                                name="logradouro" 
-                               class="form-control" id="inputLogradouro">
+                               class="form-control" id="txtlogradouro">
                     </div>
                     <label for="inputNumero" class="col-sm-2 col-form-label">Número</label>
                     <div class="col-sm-2">
                         <input type="text"  
                                value="<%= numero%>"
                                name="numero" 
-                               class="form-control" id="inputNumero">
+                               class="form-control" id="txtnumero">
                     </div>
                 </div>
 
@@ -197,7 +209,9 @@
                     <div class="col-sm-3">
                         <input type="text" 
                                value="<%= cidade%>"
-                               name="cidade" class="form-control" id="inputCidade">
+                               name="cidade"
+                               class="form-control" 
+                               id="txtcidade">
                     </div>
                 </div>
 
@@ -206,30 +220,82 @@
 
                     <label for="inputBairro" class="col-sm-2 col-form-label">Bairro</label>
                     <div class="col-sm-3">
-                        <input type="text"  name="bairro" class="form-control" id="inputBairro" value="<%=bairro%>">
+                        <input type="text"
+                               name="bairro" 
+                               class="form-control"
+                               id="txtbairro"
+                               value="<%=bairro%>">
                     </div>
                 </div>
 
 
                 <div class="form-group row">
 
-                    <label for="sltUf" class="col-sm-2 col-form-label">UF:</label>
+                    <label for="sltestado" class="col-sm-2 col-form-label">UF:</label>
                     <div class="col-sm-3">
-                        <select class="form-control" id="sltUf" name="uf" value="<%=uf%>">
-                            <option <%= uf.equals("ES") ? "selected" : ""%> 
-                                value="ES">Espirito Santo </option>
-                            <option <%= uf.equals("MG") ? "selected" : ""%>
-                                value="MG">Minas Gerais </option>
-                            <option <%= uf.equals("SP") ? "selected" : ""%>
-                                value="SP">São Paulo </option>
-                            <option <%= uf.equals("RJ") ? "selected" : ""%>
-                                value="RJ"> Rio de janeiro</option>
+                        <select class="form-control" id="sltestado" name="estado" value="<%=uf%>">
+                            <option selected="" value="">Selecione o Estado (UF)</option>
+                            <option value="">Selecione</option>
+                            <option <%= uf.equals("AC") ? "selected" : ""%>
+                                value="AC">Acre</option>
+                            <option <%= uf.equals("AL") ? "selected" : ""%>
+                                value="AL">Alagoas</option>
+                            <option <%= uf.equals("AP") ? "selected" : ""%> 
+                                value="AP">Amapá</option>
+                            <option <%= uf.equals("AM") ? "selected" : ""%>
+                                value="AM">Amazonas</option>
+                            <option <%= uf.equals("BA") ? "selected" : ""%>
+                                value="BA">Bahia</option>
+                            <option <%= uf.equals("CE") ? "selected" : ""%>
+                                value="CE">Ceará</option>
+                            <option <%= uf.equals("DF") ? "selected" : ""%>
+                                value="DF">Distrito Federal</option>
+                            <option <%= uf.equals("ES") ? "selected" : ""%>
+                                value="ES">Espirito Santo</option>
+                            <option <%= uf.equals("GO") ? "selected" : ""%>
+                                value="GO">Goiás</option>
+                            <option <%= uf.equals("MA") ? "selected" : ""%>
+                                value="MA">Maranhão</option>
+                            <option <%= uf.equals("MS") ? "selected" : ""%>
+                                value="MS">Mato Grosso do Sul</option>
+                            <option <%= uf.equals("MT") ? "selected" : ""%> 
+                                value="MT">Mato Grosso</option>
+                            <option <%= uf.equals("MG") ? "selected" : ""%> 
+                                value="MG">Minas Gerais</option>
+                            <option <%= uf.equals("PA") ? "selected" : ""%> 
+                                value="PA">Pará</option>
+                            <option <%= uf.equals("PB") ? "selected" : ""%> 
+                                value="PB">Paraíba</option>
+                            <option <%= uf.equals("PR") ? "selected" : ""%> 
+                                value="PR">Paraná</option>
+                            <option <%= uf.equals("PE") ? "selected" : ""%>
+                                value="PE">Pernambuco</option>
+                            <option <%= uf.equals("PI") ? "selected" : ""%> 
+                                value="PI">Piauí</option>
+                            <option <%= uf.equals("RJ") ? "selected" : ""%> 
+                                value="RJ">Rio de Janeiro</option>
+                            <option <%= uf.equals("RN") ? "selected" : ""%> 
+                                value="RN">Rio Grande do Norte</option>
+                            <option <%= uf.equals("RS") ? "selected" : ""%> 
+                                value="RS">Rio Grande do Sul</option>
+                            <option <%= uf.equals("RO") ? "selected" : ""%> 
+                                value="RO">Rondônia</option>
+                            <option <%= uf.equals("RR") ? "selected" : ""%> 
+                                value="RR">Roraima</option>
+                            <option <%= uf.equals("SC") ? "selected" : ""%> 
+                                value="SC">Santa Catarina</option>
+                            <option <%= uf.equals("SP") ? "selected" : ""%> 
+                                value="SP">São Paulo</option>
+                            <option <%= uf.equals("SE") ? "selected" : ""%> 
+                                value="SE">Sergipe</option>
+                            <option <%= uf.equals("TO") ? "selected" : ""%> 
+                                value="TO">Tocantins</option>
                         </select>
                     </div>
                     <label for="inputImgempresa" class="col-sm-2 col-form-label">Imagem da empresa </label>
 
                     <div class="col-sm-5">
-                        <input type="file"  name="imagemempresa" class="form-control" id="inputImgempresa" value="<%=img%>"/>
+                        <input type="file"  name="imagem" class="form-control" id="txtimagem" value="<%=img%>"/>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -255,13 +321,51 @@
             </form 
         </div>
     </div>
-    <script type="text/javascript" src="../js/bootstrap.js"></script>
+
     <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/jquery.mask.js"></script>
     <script type="text/javascript" src="../js/scriptcadastrar.js"></script>
-    //lblCpfCnpf
-    <script>
+
+    <script type="text/javascript">
         jQuery(document).ready(function ($) {
+            
+            $('#txtcep').on("blur", function (e) {
+                    const cep = $("#txtcep").val();
+                    const ceplimpo = String(cep)
+                            .replace(".", "")
+                            .replace("-", "");
+                    const urlAJAX = "https://viacep.com.br/ws/" + ceplimpo + "/json/"
+                    $.ajax({
+                        url: urlAJAX,
+                        method: "GET",
+                        success: function (resp) {
+                            
+                            console.log(resp);
+                            const endereco = resp;
+
+                            const bairro = endereco.bairro;
+                            const logradouro = endereco.logradouro;
+                            const cidade = endereco.localidade;
+                            const estado = endereco.uf;
+                            const complemento = endereco.complemento;
+
+                            $("#txtlogradouro").val(logradouro);
+                            $("#txtbairro").val(bairro);
+                            $("#txtcidade").val(cidade);
+                            $("#txtcomplemento").val(complemento);
+                            $("#sltestado").val(estado);
+                            
+
+                        },
+                        error: function (err) {
+                            alert("Erro ao buscar o CEP" + err.toString());
+                        }
+                    });
+                });
+            
+            
+            
             $("#txtCpfCnpj").mask("000.000.000-00");
             $("#divfisica").on("click", function (e) {
                 $("#lblNomeRazao").html("Nome");
@@ -279,6 +383,9 @@
             });
             $("#txtDddTelefone").on("click", function (e) {
                 $("#txtDddTelefone").mask("(00) 00000-0000");
+            });
+            $("#txtcep").on("click", function (e) {
+                $("#txtcep").mask("00.000-000");
             });
         });
     </script>
