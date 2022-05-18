@@ -123,16 +123,16 @@
                         <div id="divfisica" class="form-check">
                             <input class="form-check-input" 
                                    <%= tprequerente.equals("PF") ? "checked" : ""%>
-                                   type="radio" name="requerente"  id="gridRadios1" value="PF">
-                            <label class="form-check-label" for="gridRadios1">
+                                   type="radio" name="requerente"  id="pessoaF" value="PF">
+                            <label class="form-check-label" for="pessoaF">
                                 Pessoa Física
                             </label>
                         </div>
                         <div id="divjuridica" class="form-check">
                             <input class="form-check-input" 
                                    <%= tprequerente.equals("PJ") ? "checked" : ""%>
-                                   type="radio" name="requerente" id="gridRadios2" value="PJ" >
-                            <label class="form-check-label" for="gridRadios2">
+                                   type="radio" name="requerente" id="pessoaJ" value="PJ" >
+                            <label class="form-check-label" for="pessoaJ">
                                 Pessoa Jurídica
                             </label>
                         </div>
