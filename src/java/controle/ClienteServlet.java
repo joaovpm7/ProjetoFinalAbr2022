@@ -98,6 +98,8 @@ public class ClienteServlet extends HttpServlet {
                     cli.setTpRequerente(request.getParameter("requerente"));
                 } else if (tprequerente.equals("PJ")) {
                     cli.setTpRequerente(request.getParameter("requerente"));
+                } else {
+                    response.sendRedirect("index.jsp?erro=cadastrar");
                 }
 
                 String strtelefone = request.getParameter("telefone");
